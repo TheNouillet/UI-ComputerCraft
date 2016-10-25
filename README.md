@@ -3,4 +3,4 @@ This is an Object-Oriented librairy for the Computer Craft mod in Minecraft. Wit
 you can create graphical widgets for Lua programs.
 
 # Usage
-Look for code example in UI*.lua files.
+Look for code example in EZ*.lua files.
