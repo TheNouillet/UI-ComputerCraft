@@ -2,6 +2,12 @@
 This is an Object-Oriented framework for the Computer Craft mod in Minecraft. With it,
 you can create graphical widgets for Lua programs.
 
+## Getting started
+Juste enter this command into a computer/turtle terminal :
+```
+pastebin get KuqAf3vy UI
+```
+
 ## Usage
 You can look for code example in EZ*.lua and testUI_lifecycle.lua files.
 # Widget
