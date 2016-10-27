@@ -37,6 +37,8 @@ After configuring your widgets, you have to create at least one Viewport. By def
 
 The Viewport itself, also have two callback methods, beforeTick() and afterTick(), also with the same "self" parameter.
 
+The Viewport also have a callback designed to extend the framework ability to handle events : handleOtherEvents(), with the parameters "self", "event", "par1", "par2", "par3", "par4", "par5"
+
 ```lua
 vp = UI.Viewport:new()
 vp:addWidget(wdgt)
@@ -45,6 +47,9 @@ vp.beforeTick = function (self)
 end
 vp.afterTick = function (self)
 	-- Action after all widget ticks
+end
+vp.handleOtherEvents = function(self, event, par1, par2, par3, par4, par5)
+	-- Handle other events, such as mouse drag or network messages
 end
 ```
 
