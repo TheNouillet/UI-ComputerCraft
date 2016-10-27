@@ -94,20 +94,31 @@ function Viewport:draw()
 end
 -- Handle events such as mouse click
 function Viewport:handleEvents()
-	event, button, posX, posY = os.pullEvent()
+	event, par1, par2, par3, par4, par5 = os.pullEvent()
 	if event == "mouse_click" then
 		for i = 1, #self.widgets do
-			if self.widgets[i]:isOnWidget(posX, posY) then
+			if self.widgets[i]:isOnWidget(par2, par3) then
+				self.widgets[i]:onClick()
+			end
+		end
+	elseif event == "key" then
+		for i = 1, #self.widgets do
+			if self.widgets[i].key == par1 then
 				self.widgets[i]:onClick()
 			end
 		end
 	end
+	self:handleOtherEvents(event, par1, par2, par3, par4, par5)
 end
 -- Call the tick() method of all widgets
 function Viewport:doTicks()
 	for i = 1, #self.widgets do
 		self.widgets[i]:tick()
 	end
+end
+-- This method is called after handling events, and aims to extend the framework events handling
+function Viewport:handleOtherEvents(event, par1, par2, par3, par4, par5)
+	
 end
 -- This method is called after event hendling and before widgets ticks
 function Viewport:beforeTicks()
