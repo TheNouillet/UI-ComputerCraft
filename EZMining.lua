@@ -19,6 +19,9 @@ fuelLevel = UI.Widget:new()
 fuelLevel.x = 22
 fuelLevel.y = 12
 fuelLevel.label = turtle.getFuelLevel()
+fuelLevel.tick = function (self)
+	self.label = turtle.getFuelLevel()
+end
 
 forwardButton = UI.Widget:new()
 forwardButton.x = 7
@@ -104,11 +107,8 @@ vp:addWidget(refuelButton)
 vp:addWidget(fuelText)
 vp:addWidget(fuelLevel)
 vp:addWidget(miningButton)
-vp:draw()
 
-while true do
-	vp:handleEvents()
-	fuelLevel.label = turtle.getFuelLevel()
-	vp:draw()
-end
+app = UI.App:new()
+app:setViewport(vp)
+app:run()
 

@@ -34,17 +34,17 @@ fuelLevel = UI.Widget:new()
 fuelLevel.x = 22
 fuelLevel.y = 10
 fuelLevel.label = turtle.getFuelLevel()
+fuelLevel.tick = function(self)
+	self.label = turtle.getFuelLevel()
+end
 
 vp = UI.Viewport:new()
 vp:addWidget(farmButton)
 vp:addWidget(refuelButton)
 vp:addWidget(fuelText)
 vp:addWidget(fuelLevel)
-vp:draw()
 
-while true do
-	vp:handleEvents()
-	fuelLevel.label = turtle.getFuelLevel()
-	vp:draw()
-end
+app = UI.App:new()
+app:setViewport(vp)
+app:run()
 
