@@ -19,6 +19,7 @@ Then, you can define two callback methods, onClick() and tick(). These callbacks
 wdgt = UI.Widget:new()
 wdgt.x = 5
 wdgt.y = 2
+wdgt.key = 30
 wdgt.label = "Text here"
 wdgt.fontColor = 1
 wdgt.backgroundColor = 64
