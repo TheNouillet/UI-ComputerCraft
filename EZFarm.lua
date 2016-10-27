@@ -5,7 +5,7 @@ farmButton.x = 12
 farmButton.y = 6
 farmButton.farmWidth = 1
 farmButton.farmDepth = 1
-farmButton.label = "Lancer le farm"
+farmButton.label = "Launch farming"
 farmButton.backgroundColor = 2048
 farmButton.fontColor = 1
 farmButton.onClick = function (self)
@@ -18,7 +18,7 @@ end
 refuelButton = UI.Widget:new()
 refuelButton.x = 10
 refuelButton.y = 8
-refuelButton.label = "Remplir de carburant"
+refuelButton.label = "Refuel"
 refuelButton.backgroundColor = 2048
 refuelButton.fontColor = 1
 refuelButton.onClick = function (self)
@@ -28,7 +28,7 @@ end
 fuelText = UI.Widget:new()
 fuelText.x = 10
 fuelText.y = 10
-fuelText.label = "Carburant : "
+fuelText.label = "Fuel level : "
 
 fuelLevel = UI.Widget:new()
 fuelLevel.x = 22

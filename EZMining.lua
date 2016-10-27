@@ -3,7 +3,7 @@ os.loadAPI("UI")
 refuelButton = UI.Widget:new()
 refuelButton.x = 10
 refuelButton.y = 11
-refuelButton.label = "Remplir de carburant"
+refuelButton.label = "Refuel"
 refuelButton.backgroundColor = 2048
 refuelButton.fontColor = 1
 refuelButton.onClick = function (self)
@@ -13,7 +13,7 @@ end
 fuelText = UI.Widget:new()
 fuelText.x = 10
 fuelText.y = 12
-fuelText.label = "Carburant : "
+fuelText.label = "Fuel level : "
 
 fuelLevel = UI.Widget:new()
 fuelLevel.x = 22
@@ -86,7 +86,7 @@ end
 miningButton = UI.Widget:new()
 miningButton.x = 12
 miningButton.y = 7
-miningButton.label = "Creuser tunnel"
+miningButton.label = "Dig tunnel"
 miningButton.backgroundColor = 2048
 miningButton.fontColor = 1
 miningButton.onClick = function (self)

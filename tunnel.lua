@@ -37,7 +37,7 @@ local tArgs = { ... }
 local currentLength = 0
 local maxLength = 0
 if #tArgs == 0 then
-	print("Longueur ?")
+	print("Tunnel length ?")
 	maxLength = tonumber(read())
 elseif #tArgs ~= 1 then
 	print("Usage : tunnel <length>")
