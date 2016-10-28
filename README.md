@@ -5,7 +5,7 @@ you can create graphical widgets for Lua programs.
 # Getting started
 Juste enter this command into a computer/turtle terminal :
 ```
-pastebin get iaVaKyvf UI
+pastebin get LhW28ptT UI
 ```
 
 # Usage

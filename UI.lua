@@ -34,10 +34,41 @@ function Widget:draw ()
 	term.setTextColor(self.fontColor)
 	term.setBackgroundColor(self.backgroundColor)
 	term.write(self.label)
-	
-	--Default values
-	term.setTextColor(1)
-	term.setBackgroundColor(32768)
+end
+-- Handle events for this Widget
+function Widget:handleEvents(event, parameters)
+	if event == "mouse_click" then
+		if self:isOnWidget(parameters[2], parameters[3]) then
+			self:onClick()
+		end
+	elseif event == "key" then
+		if self.key == parameters[1] then
+			self:onClick()
+		end
+	end
+end
+
+-- The TextInput class is a Widget which can accept text input by the user
+TextInput = Widget:new()
+-- This method remove the label, keeping the TextInput background
+function TextInput:clearLabel()
+	term.setCursorPos(self.x, self.y)
+	term.setBackgroundColor(self.backgroundColor)
+	for i = 1, #self.label do
+		term.write(" ")
+	end
+end
+-- The TextInput class redefine the onClick method to handle user input
+function TextInput:onClick()
+	-- We clear the current label to make place for user input
+	self:clearLabel()
+	term.setTextColor(self.fontColor)
+	term.setCursorPos(self.x, self.y)
+	-- We set the label to user input if not empty, otherwise we restore the previous label
+	str = read()
+	if str ~= "" then
+		self.label = str
+	end
 end
 
 -- The Viewport class is a container of Widgets, which can handle events and rendering.
@@ -91,24 +122,19 @@ function Viewport:draw()
 	for i = 1, #self.widgets do
 		self.widgets[i]:draw()
 	end
+	
+	-- Default values
+	term.setTextColor(1)
+	term.setBackgroundColor(32768)
 end
 -- Handle events such as mouse click
 function Viewport:handleEvents()
-	event, par1, par2, par3, par4, par5 = os.pullEvent()
-	if event == "mouse_click" then
-		for i = 1, #self.widgets do
-			if self.widgets[i]:isOnWidget(par2, par3) then
-				self.widgets[i]:onClick()
-			end
-		end
-	elseif event == "key" then
-		for i = 1, #self.widgets do
-			if self.widgets[i].key == par1 then
-				self.widgets[i]:onClick()
-			end
-		end
+	parameters = {}
+	event, parameters[1], parameters[2], parameters[3], parameters[4], parameters[5] = os.pullEvent()
+	for i = 1, #self.widgets do
+		self.widgets[i]:handleEvents(event, parameters)
 	end
-	self:handleOtherEvents(event, par1, par2, par3, par4, par5)
+	self:handleOtherEvents(event, parameters)
 end
 -- Call the tick() method of all widgets
 function Viewport:doTicks()
@@ -117,7 +143,7 @@ function Viewport:doTicks()
 	end
 end
 -- This method is called after handling events, and aims to extend the framework events handling
-function Viewport:handleOtherEvents(event, par1, par2, par3, par4, par5)
+function Viewport:handleOtherEvents(event, parameters)
 	
 end
 -- This method is called after event hendling and before widgets ticks
