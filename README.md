@@ -33,12 +33,30 @@ wdgt.tick = function (self)
 end
 ```
 
+## TextInput
+TextInput is a Widget which can handle user input, just as a read() call can do.
+
+You can then get the result by just reading the TextInput label.
+
+```lua
+ti = UI.TextInput:new()
+ti.x = 2
+ti.y = 5
+
+-- ...
+
+sb = UI.Widget:new()
+sb.onClick = function (self)
+	doThings(ti.label)
+end
+```
+
 ## Viewport
 After configuring your widgets, you have to create at least one Viewport. By default, a Viewport is taking the entire terminal, but you can configure it to take the terminal space you want.
 
 The Viewport itself, also have two callback methods, beforeTick() and afterTick(), also with the same "self" parameter.
 
-The Viewport also have a callback designed to extend the framework ability to handle events : handleOtherEvents(), with the parameters "self", "event", "par1", "par2", "par3", "par4", "par5"
+The Viewport also have a callback designed to extend the framework ability to handle events : handleOtherEvents(), with the parameters "self", "event" and "parameters".
 
 ```lua
 vp = UI.Viewport:new()
@@ -49,8 +67,9 @@ end
 vp.afterTick = function (self)
 	-- Action after all widget ticks
 end
-vp.handleOtherEvents = function(self, event, par1, par2, par3, par4, par5)
+vp.handleOtherEvents = function(self, event, parameters)
 	-- Handle other events, such as mouse drag or network messages
+	-- To get the event parameters, just call parameters[i]
 end
 ```
 
